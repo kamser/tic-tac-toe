@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { TurnInformation } from './components/TurnInformation';
 import { GameBoard } from './components/GameBoard';
+import { EndGameDialog } from './components/EndGameDialog';
 
 import { TURNS, getWinner} from './components/Utils';
 
@@ -19,8 +20,6 @@ function App() {
   const updateBoard = (selectedIndex) => {
 
     if(gameBoard[selectedIndex] || winner)  return;
-
-    else console.log('No winner yet');
 
     const updatedBoard = [...gameBoard];
     updatedBoard[selectedIndex] = turn;
@@ -41,7 +40,7 @@ function App() {
       <h1>Tic-tac-toe Game</h1>
       <GameBoard gameBoard={gameBoard} updateBoard={updateBoard}></GameBoard>
       <TurnInformation currentTurn={turn}></TurnInformation>
-
+      <EndGameDialog winner={winner}/>
     </main>
   )
 }
