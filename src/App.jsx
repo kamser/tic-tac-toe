@@ -14,12 +14,11 @@ function App() {
 
   const [turn, setTurn] = useState(TURNS.X);
 
-
   return (
     <main className='board'>
       <h1>Tic-tac-toe Game</h1>
       <GameBoard gameBoard={gameBoard}></GameBoard>
-      <TurnInformation></TurnInformation>
+      <TurnInformation currentTurn={turn}></TurnInformation>
 
     </main>
   )

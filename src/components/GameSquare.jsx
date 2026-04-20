@@ -1,9 +1,10 @@
 import React from "react";
 
-export function GameSquare({children, updateBoard, index}){
+export function GameSquare({children, isSelected, updateBoard, index}){
+    const componentStyles = isSelected ? "square is-selected" : "square"
     return (
         <>
-            <span className="square">
+            <span className={componentStyles}>
                 {children}
             </span>
         </>
