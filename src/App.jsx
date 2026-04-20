@@ -14,7 +14,11 @@ function App() {
 
   const [turn, setTurn] = useState(TURNS.X);
 
+  const [winner, setWinner] = useState(false);
+
   const updateBoard = (selectedIndex) => {
+
+    if(gameBoard[selectedIndex]) return;
 
     const updatedBoard = [...gameBoard];
     updatedBoard[selectedIndex] = turn;
