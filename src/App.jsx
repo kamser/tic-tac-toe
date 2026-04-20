@@ -14,10 +14,17 @@ function App() {
 
   const [turn, setTurn] = useState(TURNS.X);
 
+  const updateBoard = () => {
+        const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
+        setTurn(newTurn);
+
+
+    }
+
   return (
     <main className='board'>
       <h1>Tic-tac-toe Game</h1>
-      <GameBoard gameBoard={gameBoard}></GameBoard>
+      <GameBoard gameBoard={gameBoard} updateBoard={updateBoard}></GameBoard>
       <TurnInformation currentTurn={turn}></TurnInformation>
 
     </main>
