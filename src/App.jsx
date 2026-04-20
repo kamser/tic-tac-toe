@@ -1,11 +1,12 @@
 import './App.css'
-import { GameSquare } from './components/GameSquare';
 import { useState } from 'react';
 
-const TURNS = {
-  X: 'x',
-  O: 'o'
-};
+import { TurnInformation } from './components/TurnInformation';
+import { GameBoard } from './components/GameBoard';
+
+import { TURNS } from './components/Utils';
+
+
 
 function App() {
 
@@ -17,17 +18,9 @@ function App() {
   return (
     <main className='board'>
       <h1>Tic-tac-toe Game</h1>
-      <section className='game'>
-        {
-          gameBoard.map((_, index) => {
-            return (
-              <GameSquare key={index} index={index}>
-                {index}
-              </GameSquare>
-            );
-          })
-        }
-      </section>
+      <GameBoard gameBoard={gameBoard}></GameBoard>
+      <TurnInformation></TurnInformation>
+
     </main>
   )
 }
