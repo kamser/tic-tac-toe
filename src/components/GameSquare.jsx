@@ -4,7 +4,7 @@ export function GameSquare({children, isSelected, updateBoard, index}){
     const componentStyles = isSelected ? "square is-selected" : "square";
 
     const handleClick = (event) => {
-        updateBoard();
+        updateBoard(index);
     }
     return (
         <>

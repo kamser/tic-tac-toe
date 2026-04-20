@@ -14,12 +14,17 @@ function App() {
 
   const [turn, setTurn] = useState(TURNS.X);
 
-  const updateBoard = () => {
-        const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
-        setTurn(newTurn);
+  const updateBoard = (selectedIndex) => {
+
+    const updatedBoard = [...gameBoard];
+    updatedBoard[selectedIndex] = turn;
+    setBoard(updatedBoard);
+
+    const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
+    setTurn(newTurn);
 
 
-    }
+  }
 
   return (
     <main className='board'>
