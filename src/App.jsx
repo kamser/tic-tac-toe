@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { TurnInformation } from './components/TurnInformation';
 import { GameBoard } from './components/GameBoard';
 
-import { TURNS } from './components/Utils';
+import { TURNS, isThereWinner} from './components/Utils';
 
 
 
@@ -14,11 +14,17 @@ function App() {
 
   const [turn, setTurn] = useState(TURNS.X);
 
-  const [winner, setWinner] = useState(false);
+  const [winner, setWinner] = useState(null);
 
   const updateBoard = (selectedIndex) => {
 
-    if(gameBoard[selectedIndex]) return;
+   if(gameBoard[selectedIndex])  return;
+
+    if(isThereWinner(gameBoard)) {
+      console.log('Winner!');
+      return
+    }
+    else console.log('No winner yet');
 
     const updatedBoard = [...gameBoard];
     updatedBoard[selectedIndex] = turn;
