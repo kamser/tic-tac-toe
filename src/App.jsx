@@ -60,6 +60,8 @@ function App() {
     setTurn(TURNS.X);
     setBoard(Array(9).fill(null));
     setWinner(null);
+    localStorage.clear('gameBoard');
+    localStorage.clear('currentTurn');
   }
 
   return (
