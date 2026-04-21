@@ -12,9 +12,19 @@ import { TURNS, getWinner} from './components/Utils';
 
 function App() {
 
-  const [gameBoard, setBoard] = useState(Array(9).fill(null));
+  const [gameBoard, setBoard] = useState(() => {
+    const savedGameBoard = localStorage.getItem('gameBoard');
+    
+    if(savedGameBoard) return JSON.parse(savedGameBoard);
+    return Array(9).fill(null)
+  });
 
-  const [turn, setTurn] = useState(TURNS.X);
+  const [turn, setTurn] = useState( () => {
+    const saveTurn = localStorage.getItem('currentTurn');
+    
+    if(saveTurn) return saveTurn;
+    return TURNS.X
+  });
 
   const [winner, setWinner] = useState(null);
 
@@ -28,6 +38,9 @@ function App() {
 
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
     setTurn(newTurn);
+
+    localStorage.setItem('gameBoard', JSON.stringify(updatedBoard));
+    localStorage.setItem('currentTurn', newTurn);
 
     const newWinner = getWinner(updatedBoard);
     
