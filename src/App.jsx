@@ -1,5 +1,6 @@
 import './App.css'
 import { useState } from 'react';
+import confetti from 'canvas-confetti';
 
 import { TurnInformation } from './components/TurnInformation';
 import { GameBoard } from './components/GameBoard';
@@ -32,15 +33,29 @@ function App() {
     
     if(newWinner){
       setWinner(newWinner);
+      confetti();
+    } else if(isDrawGame(updatedBoard)) {
+      setWinner(false);
     }
+  }
+
+  const isDrawGame = (gameBoard) => {
+    return !gameBoard.includes(null) && winner === null;
+  }
+
+  const resetGame = () => {
+    setTurn(TURNS.X);
+    setBoard(Array(9).fill(null));
+    setWinner(null);
   }
 
   return (
     <main className='board'>
       <h1>Tic-tac-toe Game</h1>
+      <button onClick={resetGame}>Reset Game</button>
       <GameBoard gameBoard={gameBoard} updateBoard={updateBoard}></GameBoard>
       <TurnInformation currentTurn={turn}></TurnInformation>
-      <EndGameDialog winner={winner}/>
+      <EndGameDialog winner={winner} resetGame={resetGame}/>
     </main>
   )
 }

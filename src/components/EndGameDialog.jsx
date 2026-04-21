@@ -1,6 +1,9 @@
 import { GameSquare } from "./GameSquare";
 
-export function EndGameDialog({winner}){
+export function EndGameDialog({winner, resetGame}){
+    const handleOnClick = () => {
+        resetGame();
+    }
     return (
        <>
         {
@@ -19,7 +22,7 @@ export function EndGameDialog({winner}){
                             </header>
             
                             <footer>
-                                <button>Empezar de nuevo</button>
+                                <button onClick={handleOnClick}>Empezar de nuevo</button>
                             </footer>
                         </div>
                     </section>
